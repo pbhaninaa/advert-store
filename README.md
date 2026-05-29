@@ -1,6 +1,8 @@
-# Simple-Selling-Website
+# advert-store
 
 Nwabisile — a simple frontend clothing shop. Browse products, filter by category and price, add to bag, then order via WhatsApp or email.
+
+**Live site:** https://pbhaninaa.github.io/advert-store/
 
 ## Run locally
 

@@ -2,9 +2,9 @@
 export const storeConfig = {
   name: 'Nwabisile',
   tagline: 'Curated fashion — order via WhatsApp or email.',
-  email: 'pbhanina@gmail.com',
+  email: 'nwabisile.gugwana98@gmail.com',
   /** Local SA number — WhatsApp link uses international format automatically. */
-  whatsappPhone: '0782141216',
+  whatsappPhone: '0738632244',
   currency: 'R',
 
   /**
