@@ -22,6 +22,7 @@ Pushes to `main` auto-deploy to GitHub Pages via GitHub Actions.
 
 | File | What to edit |
 |------|----------------|
+| **`ADD-PRODUCTS.md`** | **Step-by-step guide to add products** |
 | `src/data/items.js` | Products |
 | `public/products Images/` | Product photos |
 | `src/config.js` | Store name, contact, price filters |

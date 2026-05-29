@@ -1,6 +1,7 @@
 import { storeConfig } from '../config'
+import { enrichCartLine } from '../utils/productOptions'
 
-/** Convert local SA number (e.g. 0782141216) to international WhatsApp format. */
+/** Convert local SA number (e.g. 0738632244) to international WhatsApp format. */
 export function formatWhatsAppPhone(phone) {
   let digits = phone.replace(/\D/g, '')
   if (digits.startsWith('0')) {
@@ -15,19 +16,49 @@ export function formatPrice(amount) {
 
 export function buildOrderMessage(cartLines, customerNote = '') {
   const { name } = storeConfig
+  const lines = cartLines.map(enrichCartLine)
+
   let message = `Hello ${name}, I would like to place an order:\n\n`
 
-  cartLines.forEach((line, index) => {
+  lines.forEach((line, index) => {
     const lineTotal = line.price * line.qty
-    message += `${index + 1}. ${line.title} x${line.qty} — ${formatPrice(lineTotal)}\n`
+    message += `*Item ${index + 1}: ${line.title}*\n`
+
+    if (line.category) {
+      message += `Category: ${line.category}\n`
+    }
+
+    if (line.size) {
+      message += `Size: ${line.size}\n`
+    }
+
+    if (line.color) {
+      message += `Colour: ${line.color}\n`
+    }
+
+    if (line.description) {
+      message += `Product info: ${line.description}\n`
+    }
+
+    if (line.itemNote) {
+      message += `Item note: ${line.itemNote}\n`
+    }
+
+    message += `Quantity: ${line.qty}\n`
+    message += `Unit price: ${formatPrice(line.price)}\n`
+    message += `Subtotal: ${formatPrice(lineTotal)}\n`
+
+    if (index < lines.length - 1) {
+      message += `\n`
+    }
   })
 
-  const total = cartLines.reduce((sum, line) => sum + line.price * line.qty, 0)
-  message += `\nTotal: ${formatPrice(total)}\n`
+  const total = lines.reduce((sum, line) => sum + line.price * line.qty, 0)
+  message += `\n*ORDER TOTAL: ${formatPrice(total)}*\n`
   message += `\nPlease confirm availability and delivery details.`
 
   if (customerNote.trim()) {
-    message += `\n\nNote: ${customerNote.trim()}`
+    message += `\n\n*Delivery / order note:*\n${customerNote.trim()}`
   }
 
   return message

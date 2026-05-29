@@ -36,7 +36,7 @@
             v-for="item in filteredItems"
             :key="item.id"
             :item="item"
-            @added="onItemAdded"
+            @configure="openAddModal"
           />
         </div>
 
@@ -75,6 +75,12 @@
     </footer>
 
     <CartDrawer v-model:open="cartOpen" />
+    <AddToCartModal
+      :open="!!productToAdd"
+      :product="productToAdd"
+      @close="productToAdd = null"
+      @added="onItemAdded"
+    />
     <WhatsAppFab />
   </div>
 </template>
@@ -85,6 +91,7 @@ import HeroSection from './components/HeroSection.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import AdCard from './components/AdCard.vue'
 import CartDrawer from './components/CartDrawer.vue'
+import AddToCartModal from './components/AddToCartModal.vue'
 import WhatsAppFab from './components/WhatsAppFab.vue'
 import ProductFilters from './components/ProductFilters.vue'
 import items from './data/items'
@@ -96,6 +103,7 @@ import { getCategories, filterItems } from './utils/filterProducts'
 provideCart()
 
 const cartOpen = ref(false)
+const productToAdd = ref(null)
 const selectedCategory = ref('all')
 const selectedPriceRange = ref('all')
 
@@ -115,7 +123,12 @@ function scrollToProducts() {
   document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })
 }
 
+function openAddModal(item) {
+  productToAdd.value = item
+}
+
 function onItemAdded() {
+  productToAdd.value = null
   cartOpen.value = true
 }
 </script>
