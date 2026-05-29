@@ -1,5 +1,26 @@
-# Vue 3 + Vite
+# Simple-Selling-Website
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Nwabisile — a simple frontend clothing shop. Browse products, filter by category and price, add to bag, then order via WhatsApp or email.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Deploy
+
+Pushes to `main` auto-deploy to GitHub Pages via GitHub Actions.
+
+1. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**
+2. Push to `main`
+
+## Customize
+
+| File | What to edit |
+|------|----------------|
+| `src/data/items.js` | Products |
+| `public/products Images/` | Product photos |
+| `src/config.js` | Store name, contact, price filters |
+| `src/themes/presets/clothing.js` | Colors & border radius |
