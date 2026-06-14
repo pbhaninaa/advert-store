@@ -1,7 +1,7 @@
-/** Folder under `public/` where product photos are stored. */
-export const PRODUCT_IMAGES_FOLDER = 'products Images'
+/** Product photos live in public/my-products/images/ (synced from my-products/images/). */
+export const PRODUCT_IMAGES_FOLDER = 'my-products/images'
 
-/** Build a URL for a file inside the product images folder. */
+/** Build a URL for a photo filename inside the product images folder. */
 export function productImage(filename) {
   const path = `${PRODUCT_IMAGES_FOLDER}/${filename}`
   return `${import.meta.env.BASE_URL}${encodeURI(path)}`

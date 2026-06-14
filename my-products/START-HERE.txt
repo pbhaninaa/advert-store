@@ -1,0 +1,40 @@
+========================================
+  NWABISILE SHOP — ADD YOUR PRODUCTS
+========================================
+
+Everything goes in this folder on GitHub:
+
+  my-products/
+    products.json     ← your product list
+    images/           ← your product photos
+
+HOW TO UPDATE THE LIVE WEBSITE (GitHub)
+---------------------------------------
+1. Open your shop on GitHub in a browser:
+   https://github.com/pbhaninaa/advert-store
+
+2. Open the folder:  my-products
+
+3. Add or replace photos:
+   - Open  my-products/images
+   - Click  Add file  →  Upload files
+   - Drag your photos into the page
+   - Click  Commit changes
+
+4. Update the product list:
+   - Open  my-products/products.json
+   - Click the pencil icon (Edit)
+   - Change names, prices, sizes, colours
+   - Click  Commit changes
+
+5. Wait 1–2 minutes, then open your shop:
+   https://pbhaninaa.github.io/advert-store/
+
+IMPORTANT
+---------
+- The "image" field in products.json must match the photo filename exactly.
+- Each product needs a unique "id" number (1, 2, 3 …).
+
+NEED HELP?
+----------
+Open  Nwabisile-Shop-User-Manual.docx  (full guide with pictures and examples).

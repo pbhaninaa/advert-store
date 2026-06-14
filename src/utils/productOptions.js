@@ -1,8 +1,4 @@
-import catalogItems from '../data/items.js'
-
-export function getProductById(id) {
-  return catalogItems.find((item) => item.id === id)
-}
+import { getProductById } from './catalog'
 
 export function getProductOptions(product) {
   return {

@@ -1,180 +1,134 @@
-# How to Add Products
+# How to Add Products (Easy Guide)
 
-This guide explains how to add, update, or remove products on your Nwabisile advert store.
+Your shop: **https://pbhaninaa.github.io/advert-store/**
 
-Your site is live at: **https://pbhaninaa.github.io/advert-store/**
-
----
-
-## What you need
-
-- Product photo (`.jpg` or `.png`)
-- Product name, price, category, and short description
-- A text editor (VS Code, Notepad, etc.)
-
-No backend or database — everything is edited in two places:
-
-| What | Where |
-|------|--------|
-| Product photos | `public/products Images/` |
-| Product details | `src/data/items.js` |
+You do **not** need to know coding. Update one folder on **GitHub** — drag and drop your photos and edit one JSON file.
 
 ---
 
-## Step 1 — Add the product photo
+## Your folder on GitHub
 
-1. Save your photo in this folder:
+Everything lives here:
 
-   ```
-   advert-site/public/products Images/
-   ```
+```
+my-products/
+  products.json     ← product names, prices, sizes, colours
+  images/           ← drag your photos here
+```
 
-2. Use a simple filename (no spaces if you can):
-
-   - Good: `red-dress.jpg`, `denim-jacket.png`
-   - Also works: `Red Dress.jpg` (the site handles spaces automatically)
-
-3. Recommended size: **square or tall photo**, at least **500×500 px** so it looks sharp on phones.
+**GitHub link:** https://github.com/pbhaninaa/advert-store/tree/main/my-products
 
 ---
 
-## Step 2 — Add the product in `items.js`
+## Step 1 — Add or replace photos
 
-Open **`src/data/items.js`** and add a new entry to the list.
+1. Open **my-products/images** on GitHub.
+2. Click **Add file** → **Upload files**.
+3. **Drag and drop** your photos into the upload area (you can drop many at once).
+4. Click **Commit changes** (green button at the bottom).
 
-Copy this template and change the values:
+Use simple filenames: `red-dress.jpg`, `blue-jeans.png`
 
-```javascript
+---
+
+## Step 2 — Update products.json
+
+1. Open **my-products/products.json** on GitHub.
+2. Click the **pencil icon** (Edit this file).
+3. Change product details, or copy a block to add a new product:
+
+```json
 {
-  id: 9,                              // unique number — never repeat an id
-  title: 'Red Summer Dress',
-  category: 'Dresses',                  // e.g. Dresses, Tops, Bottoms, Outerwear
-  price: 350,                           // number only — shown as R350
-  sizes: ['S', 'M', 'L', 'XL'],         // dropdown options — use [] to let customer type
-  colors: ['Red', 'Black', 'White'],    // dropdown options — use [] to let customer type
-  image: productImage('red-dress.jpg'), // must match your photo filename
-  description: 'Cotton blend. Perfect for events.',
-},
+  "id": 9,
+  "title": "Red Summer Dress",
+  "category": "Dresses",
+  "price": 350,
+  "image": "red-dress.jpg",
+  "description": "Cotton blend. Perfect for events.",
+  "sizes": ["S", "M", "L"],
+  "colors": ["Red", "Black"]
+}
 ```
 
-### Field guide
+4. Click **Commit changes**.
 
-| Field | Description |
+### What each field means
+
+| Field | What to put |
 |-------|-------------|
-| `id` | Unique number for each product (1, 2, 3 …) |
-| `title` | Name shown on the product card |
-| `category` | Used for filters — keep names consistent (e.g. always `Dresses`, not `Dress`) |
-| `price` | Price in Rands, numbers only |
-| `sizes` | Array of sizes for dropdown, e.g. `['S', 'M', 'L']` — customer **must** pick one |
-| `colors` | Array of colours for dropdown, e.g. `['Black', 'White']` — customer **must** pick one |
-| `image` | `productImage('your-file.jpg')` — filename must match the photo in `products Images` |
-| `description` | Product info sent in WhatsApp/email orders |
+| `id` | Unique number (1, 2, 3 … never repeat) |
+| `title` | Product name on the shop |
+| `category` | e.g. Dresses, Tops, Bottoms — keep spelling the same |
+| `price` | Numbers only (shown as R350) |
+| `image` | **Exact photo filename** from the images folder |
+| `description` | Short info — sent in WhatsApp orders |
+| `sizes` | e.g. `["S", "M", "L"]` — use `[]` if customer types their own |
+| `colors` | e.g. `["Black", "White"]` — use `[]` if customer types their own |
 
-### Example — full file with one product
-
-```javascript
-import { productImage } from '../utils/images'
-
-export default [
-  {
-    id: 1,
-    title: 'Red Summer Dress',
-    category: 'Dresses',
-    price: 350,
-    sizes: ['S', 'M', 'L'],
-    colors: ['Red', 'Black'],
-    image: productImage('red-dress.jpg'),
-    description: 'Cotton blend. Perfect for events.',
-  },
-]
-```
+**Important:** `"image"` must match the photo filename exactly.
 
 ---
 
-## How customers order (size & colour)
+## Step 3 — Check the live site
 
-1. Tap **Add to Bag** — a form opens for **size**, **colour**, quantity, and optional notes.
-2. In the **bag**, they can change size, colour, or notes for each item.
-3. **WhatsApp / email** only works when every item has size and colour filled in.
-4. The order message includes size, colour, notes, quantity, and price for each item.
+After you commit on GitHub, wait **1–2 minutes**, then open:
 
----
+**https://pbhaninaa.github.io/advert-store/**
 
-## Step 3 — Remove or edit a product
-
-- **Edit** — change the text or price in `items.js`, or replace the image file (same filename).
-- **Remove** — delete the whole `{ ... }` block for that product from `items.js`.
-- **Replace photo** — swap the file in `products Images/` and keep the same filename, or use a new filename and update `productImage('...')`.
+Hard refresh your phone if you don’t see changes.
 
 ---
 
-## Step 4 — Preview on your computer
+## Upload a whole folder at once
 
-In the project folder, run:
+If you prepared a folder on your computer with `products.json` and an `images` folder inside:
 
-```bash
-npm install
-npm run dev
-```
-
-Open the link shown in the terminal (usually `http://localhost:5173`) and check your products.
-
----
-
-## Step 5 — Publish to the live website
-
-After saving your changes:
-
-```bash
-git add .
-git commit -m "Add new products"
-git push
-```
-
-Wait 1–2 minutes. GitHub will rebuild the site automatically.
-
-Then open: **https://pbhaninaa.github.io/advert-store/**
-
-Do a hard refresh on your phone if you don’t see changes (`Ctrl+F5` on desktop).
+1. On GitHub, open **my-products**.
+2. Click **Add file** → **Upload files**.
+3. Drag the **images** and **products.json** into the upload area.
+4. If asked to replace existing files, confirm.
+5. Click **Commit changes**.
 
 ---
 
-## Optional — change contact details
+## Remove or change a product
 
-Edit **`src/config.js`**:
-
-```javascript
-email: 'nwabisile.gugwana98@gmail.com',
-whatsappPhone: '0738632244',
-```
+- **Change price or name** — edit that product in `products.json` on GitHub
+- **Remove a product** — delete its `{ ... }` block (and the comma before it)
+- **Change photo** — upload a new file to `images/` with the same name, or update `"image"` in JSON
 
 ---
 
-## Optional — change colours
+## How customers order
 
-Edit **`src/themes/presets/clothing.js`** (or paste your colours into `src/themes/presets/custom.js` and switch the import in `src/themes/active.js`).
+1. Tap **Add to Bag** — choose size, colour, quantity
+2. In the bag, they can edit details per item
+3. **WhatsApp / email** only works when size and colour are filled in for every item
 
 ---
 
-## Optional — change price filters
+## Something wrong?
 
-Edit the `priceRanges` list in **`src/config.js`** to match your price bands.
+| Problem | Fix |
+|---------|-----|
+| Photo not showing | `"image"` in JSON must match filename in `images/` exactly |
+| Website didn’t update | Wait 2 minutes after commit; hard refresh the browser |
+| JSON error | Check commas and quotation marks in `products.json` |
+| Need full instructions | Open **Nwabisile-Shop-User-Manual.docx** |
+
+---
+
+## Optional — preview on your computer
+
+If you have the project folder on your PC:
+
+- Double-click **PREVIEW-SHOP.bat** to preview locally
+- Double-click **UPDATE-WEBSITE.bat** to publish via Git (alternative to GitHub website)
 
 ---
 
 ## Tips
 
-- Use the **same category names** for similar items so filters work well.
-- Add **`sizes`** and **`colors`** arrays on each product so customers pick the right variant at checkout.
-- Compress large photos before uploading (under 500 KB each keeps the site fast).
-- After pushing, share the link **https://pbhaninaa.github.io/advert-store/** — not the GitHub repo link.
-
----
-
-## Need help?
-
-If something doesn’t show after pushing:
-
-1. Check the filename in `productImage('...')` matches the file in `products Images`.
-2. Make sure each product has a **unique `id`**.
-3. Hard refresh the browser or try an incognito tab.
+- Keep category names consistent (always `Dresses`, not `Dress`)
+- Compress large photos (under 500 KB each)
+- Share **https://pbhaninaa.github.io/advert-store/** with customers

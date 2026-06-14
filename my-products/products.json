@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Floral Midi Dress",
+    "category": "Dresses",
+    "price": 450,
+    "image": "floral-midi-dress.jpg",
+    "description": "Light floral print. Perfect for summer outings.",
+    "sizes": ["S", "M", "L"],
+    "colors": ["Floral print", "Navy floral"]
+  },
+  {
+    "id": 2,
+    "title": "High-Waist Mom Jeans",
+    "category": "Bottoms",
+    "price": 380,
+    "image": "mom-jeans.jpg",
+    "description": "Classic denim. Comfortable stretch fit.",
+    "sizes": ["28", "30", "32", "34", "36"],
+    "colors": ["Blue denim", "Black denim"]
+  },
+  {
+    "id": 3,
+    "title": "Oversized Blazer",
+    "category": "Outerwear",
+    "price": 520,
+    "image": "oversized-blazer.jpg",
+    "description": "Structured neutral blazer. Dress up or down.",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Beige", "Black", "Grey"]
+  },
+  {
+    "id": 4,
+    "title": "Ribbed Crop Top",
+    "category": "Tops",
+    "price": 180,
+    "image": "ribbed-crop-top.jpg",
+    "description": "Soft ribbed cotton.",
+    "sizes": ["S", "M", "L"],
+    "colors": ["Black", "White", "Brown"]
+  },
+  {
+    "id": 5,
+    "title": "Linen Wide-Leg Trousers",
+    "category": "Bottoms",
+    "price": 340,
+    "image": "linen-trousers.jpg",
+    "description": "Breathable linen blend. Relaxed elegant fit.",
+    "sizes": ["S", "M", "L"],
+    "colors": ["Natural", "White", "Olive"]
+  },
+  {
+    "id": 6,
+    "title": "Chunky Knit Cardigan",
+    "category": "Knitwear",
+    "price": 290,
+    "image": "knit-cardigan.jpg",
+    "description": "Cosy oversized knit.",
+    "sizes": ["One size"],
+    "colors": ["Cream", "Camel", "Grey"]
+  },
+  {
+    "id": 7,
+    "title": "Satin Maxi Skirt",
+    "category": "Dresses",
+    "price": 220,
+    "image": "satin-maxi-skirt.jpg",
+    "description": "Flowing satin skirt.",
+    "sizes": ["S", "M", "L"],
+    "colors": ["Emerald", "Champagne", "Black"]
+  },
+  {
+    "id": 8,
+    "title": "Classic White Tee",
+    "category": "Tops",
+    "price": 150,
+    "image": "white-tee.jpg",
+    "description": "Premium cotton basic. Wardrobe essential.",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "colors": ["White", "Black", "Grey"]
+  }
+]

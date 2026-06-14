@@ -15,7 +15,11 @@
             </h2>
           </div>
           <p class="text-t-muted text-sm max-w-xs sm:text-right leading-relaxed">
-            {{ items.length }} pieces available. Tap <strong class="text-t-text font-medium">Add to Bag</strong>, then checkout on WhatsApp or email.
+            <template v-if="loading">Loading collection…</template>
+            <template v-else-if="loadError">{{ loadError }}</template>
+            <template v-else>
+              {{ items.length }} pieces available. Tap <strong class="text-t-text font-medium">Add to Bag</strong>, then checkout on WhatsApp or email.
+            </template>
           </p>
         </div>
 
@@ -29,7 +33,23 @@
         />
 
         <div
-          v-if="filteredItems.length > 0"
+          v-if="loading"
+          class="text-center py-16 border border-t-border rounded-theme-lg bg-t-surface"
+        >
+          <p class="font-display text-xl text-t-text">Loading products…</p>
+        </div>
+
+        <div
+          v-else-if="loadError"
+          class="text-center py-16 border border-t-border rounded-theme-lg bg-t-surface px-6"
+        >
+          <p class="font-display text-xl text-t-text">Could not load products</p>
+          <p class="text-t-muted mt-2 text-sm max-w-md mx-auto">{{ loadError }}</p>
+          <p class="text-t-muted mt-4 text-xs">Check the <strong class="text-t-text">my-products</strong> folder and run PREVIEW-SHOP.bat.</p>
+        </div>
+
+        <div
+          v-else-if="filteredItems.length > 0"
           class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-stretch"
         >
           <AdCard
@@ -86,7 +106,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import HeroSection from './components/HeroSection.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import AdCard from './components/AdCard.vue'
@@ -94,23 +114,36 @@ import CartDrawer from './components/CartDrawer.vue'
 import AddToCartModal from './components/AddToCartModal.vue'
 import WhatsAppFab from './components/WhatsAppFab.vue'
 import ProductFilters from './components/ProductFilters.vue'
-import items from './data/items'
 import { storeConfig } from './config'
 import { provideCart } from './composables/useCart'
 import { formatWhatsAppPhone } from './utils/checkout'
 import { getCategories, filterItems } from './utils/filterProducts'
+import { loadProducts } from './utils/loadProducts'
 
 provideCart()
 
+const items = ref([])
+const loading = ref(true)
+const loadError = ref('')
 const cartOpen = ref(false)
 const productToAdd = ref(null)
 const selectedCategory = ref('all')
 const selectedPriceRange = ref('all')
 
-const categories = getCategories(items)
+onMounted(async () => {
+  try {
+    items.value = await loadProducts()
+  } catch (error) {
+    loadError.value = error.message ?? 'Unknown error loading products.json'
+  } finally {
+    loading.value = false
+  }
+})
+
+const categories = computed(() => getCategories(items.value))
 
 const filteredItems = computed(() =>
-  filterItems(items, {
+  filterItems(items.value, {
     category: selectedCategory.value,
     priceRangeId: selectedPriceRange.value,
     priceRanges: storeConfig.priceRanges,

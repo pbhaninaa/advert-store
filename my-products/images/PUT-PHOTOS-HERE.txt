@@ -1,0 +1,8 @@
+Put your product photos in this folder.
+
+Each photo filename must match the "image" field in products.json.
+
+Example:
+  red-dress.jpg   →   "image": "red-dress.jpg"
+
+Use .jpg or .png. Keep names simple (no special characters if you can).
