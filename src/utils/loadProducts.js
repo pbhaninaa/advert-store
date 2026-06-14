@@ -1,7 +1,7 @@
 import { productImage } from './images'
 import { setCatalog } from './catalog'
 
-const PRODUCTS_URL = `${import.meta.env.BASE_URL}my-products/products.json`
+const PRODUCTS_URL = `${import.meta.env.BASE_URL}my-products/products.json?v=${__ASSET_VERSION__}`
 
 function normalizeProduct(raw) {
   const image = raw.image ?? ''
